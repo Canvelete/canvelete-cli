@@ -113,7 +113,7 @@ class CanveleteAPIClient {
         return this.request('GET', `/api/automation/designs/${id}`);
     }
 
-    // Render
+    // Render - uses backend API directly at /api/v1/render
     async render(options) {
         const data = {
             format: options.format || 'png',
@@ -123,10 +123,11 @@ class CanveleteAPIClient {
         if (options.designId) data.designId = options.designId;
         if (options.templateId) data.templateId = options.templateId;
         if (options.dynamicData) data.dynamicData = options.dynamicData;
+        if (options.dynamicElements) data.dynamicElements = options.dynamicElements;
         if (options.width) data.width = options.width;
         if (options.height) data.height = options.height;
 
-        return this.request('POST', '/api/automation/render', { json: data, binary: true });
+        return this.request('POST', '/api/v1/render', { json: data, binary: true });
     }
 
     async renderAsync(options) {
@@ -139,6 +140,7 @@ class CanveleteAPIClient {
         if (options.designId) data.designId = options.designId;
         if (options.templateId) data.templateId = options.templateId;
         if (options.dynamicData) data.dynamicData = options.dynamicData;
+        if (options.dynamicElements) data.dynamicElements = options.dynamicElements;
 
         return this.request('POST', '/api/v1/render/async', { json: data });
     }
@@ -152,7 +154,7 @@ class CanveleteAPIClient {
             page: options.page || 1,
             limit: options.limit || 20,
         };
-        return this.request('GET', '/api/automation/render', { params });
+        return this.request('GET', '/api/v1/render/history', { params });
     }
 
     // Assets

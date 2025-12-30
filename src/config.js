@@ -14,7 +14,7 @@ const config = new Conf({
         },
         baseUrl: {
             type: 'string',
-            default: 'https://www.canvelete.com'
+            default: 'https://api.canvelete.com'
         },
         defaultFormat: {
             type: 'string',
